@@ -1,0 +1,14 @@
+
+entity LoginEvent {
+	username String required,
+    application String required,
+    loginDate Instant required,
+    ipAddress String required,
+    delegationId Long,
+    delegator String
+}
+
+dto LoginEvent with mapstruct
+service LoginEvent with serviceImpl
+paginate LoginEvent with pagination
+filter *
