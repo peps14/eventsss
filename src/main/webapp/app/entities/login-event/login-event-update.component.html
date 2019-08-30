@@ -1,0 +1,83 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-login-event-heading">Create or edit a Login Event</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!editForm.get('id').value">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id"
+                        readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_username">Username</label>
+                    <input type="text" class="form-control" name="username" id="field_username"
+                           formControlName="username"/>
+                    <div *ngIf="editForm.get('username').invalid && (editForm.get('username').dirty || editForm.get('username').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('username').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_application">Application</label>
+                    <input type="text" class="form-control" name="application" id="field_application"
+                           formControlName="application"/>
+                    <div *ngIf="editForm.get('application').invalid && (editForm.get('application').dirty || editForm.get('application').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('application').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_loginDate">Login Date</label>
+                    <div class="d-flex">
+                        <input id="field_loginDate" type="datetime-local" class="form-control" name="loginDate" formControlName="loginDate" placeholder="YYYY-MM-DD HH:mm"/>
+                    </div>
+                    <div *ngIf="editForm.get('loginDate').invalid && (editForm.get('loginDate').dirty || editForm.get('loginDate').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('loginDate').errors.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.get('loginDate').errors?.ZonedDateTimelocal">
+                            This field should be a date and time.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_ipAddress">Ip Address</label>
+                    <input type="text" class="form-control" name="ipAddress" id="field_ipAddress"
+                           formControlName="ipAddress"/>
+                    <div *ngIf="editForm.get('ipAddress').invalid && (editForm.get('ipAddress').dirty || editForm.get('ipAddress').touched)">
+                        <small class="form-text text-danger"
+                               *ngIf="editForm.get('ipAddress').errors.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_delegationId">Delegation Id</label>
+                    <input type="number" class="form-control" name="delegationId" id="field_delegationId"
+                           formControlName="delegationId"/>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_delegator">Delegator</label>
+                    <input type="text" class="form-control" name="delegator" id="field_delegator"
+                           formControlName="delegator"/>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
